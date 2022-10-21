@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <script>
+      window.onload=
+      ()=>{
+        fetch("https://632464475c1b435727a76571.mockapi.io/registrationdata")
+        .then(res=>res.json())
+        .then(data => console.log(data))
+      };
+
+      const btn = document.querySelector('#loginsubmit');
+const form = document.querySelector('#loginform');
+
+btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    subscribe();
+});
+
+const subscribe = async () => {
+    try {
+        let response = await fetch('https://632464475c1b435727a76571.mockapi.io/random', {
+            method: 'POST',
+            body: new FormData(form),
+        });
+        const result = await response.json();
+
+        showMessage(result.message, response.status == 200 ? 'success' : 'error');
+
+    } catch (error) {
+        showMessage(error.message, 'error');
+    }
+};
+
+
+
+    </script>
+
+
+    <title>login</title>
+  </head>
+  <body>
+    <div><button class="homebutton" onclick="window.location.href='index.html';">Home</button>
+    </div>
+    <div class="formtitle">
+      <h1>Login form</h1>
+    </div>
+
+
+    <div class="container">
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-auto">
+         
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="loginform">
+            <form id="loginform" onsubmit="return confirm('Do you really want to submit the form?');" action="profile.html" class="mainloginform">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" required>
+                </div>
+                <div class="mb-3">
+                    <button id="loginsubmit" type="submit" class="btn btn-primary">Login</button>
+    
+                </div>
+    
+              </form>
+        </div>
+        </div>
+        <div class="col col-lg-auto">
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="output"></div>
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+     </body>
+</html>
